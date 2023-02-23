@@ -2,6 +2,7 @@ const root = document.querySelector(':root')
 const body = document.querySelector('body')
 const hero = document.querySelector('.hero')
 const myWork = document.querySelector('.my-work')
+const projects = document.querySelectorAll('.project')
 
 let scrolling = false
 let lastKnownScrollPosition = 0
@@ -11,7 +12,7 @@ window.addEventListener('scroll', (e) => {
   const scrollHeight = window.scrollY
   root.style.setProperty('--scroll-height', `${scrollHeight}px`)
   workTransition(scrollHeight)
-  requestAnimationFrame(() => workHorizontalScroll(scrollHeight, e))
+  // requestAnimationFrame(() => workHorizontalScroll(scrollHeight, e))
 })
 
 window.addEventListener('mousemove', (e) => {
@@ -38,42 +39,50 @@ const workTransition = (scrollHeight) => {
   }
 }
 
-const workHorizontalScroll = (scrollHeight) => {
-  const myWorkContainer = myWork.querySelector('.my-work-container')
-  const workScrollMax = myWorkContainer.clientWidth
-  const threshold = 612
-  if (threshold - scrollHeight > 0) body.style.top = `0px`
-  if (
-    scrollHeight > threshold &&
-    threshold - scrollHeight > window.innerWidth - workScrollMax
-  ) {
-    myWorkContainer.style.left = `-${scrollHeight - threshold}px`
-    body.style.top = `${scrollHeight - threshold}px`
-  }
+/* Intersection Observer */
+const options = {
+  rootMargin: '-25% 0px',
 }
+
+const callback = (projects, observer) => {
+  const animationOptions = {
+    duration: 1500,
+    fill: 'forwards',
+    easing: 'ease-in-out',
+    delay: 400,
+  }
+  projects.forEach((project) => {
+    if (project.isIntersecting) {
+      console.log(project)
+      // project.target.children[0].style.left = `-400px`
+      // project.target.children[1].style.left = `400px`
+      project.target.children[0].animate(
+        [{ left: `0px` }, { left: '-400px' }],
+        animationOptions
+      )
+      project.target.children[1].animate(
+        [{ left: `0px` }, { left: '400px' }],
+        animationOptions
+      )
+      observer.unobserve(project.target)
+    }
+  })
+}
+
+const observer = new IntersectionObserver(callback, options)
+
+projects.forEach((project) => observer.observe(project))
 
 // const workHorizontalScroll = (scrollHeight) => {
 //   const myWorkContainer = myWork.querySelector('.my-work-container')
-//   const myWorkItem = myWorkContainer.querySelector('.item')
-//   const workScrollMax =
-//     myWorkContainer.clientWidth - myWorkItem.clientWidth * 3 + 180
+//   const workScrollMax = myWorkContainer.clientWidth
 //   const threshold = 612
-//   scrolling = 0 < workScrollDist && workScrollDist < workScrollMax
-//   if (scrollHeight > threshold && scrolling) {
-//     document.documentElement.scrollTop = threshold
-//     if (scrollHeight > lastKnownScrollPosition) {
-//       //scroll down
-//       console.log('down')
-//       workScrollDist += 10
-//     } else if (scrollHeight < lastKnownScrollPosition) {
-//       //scroll up
-//       console.log('up')
-//       workScrollDist -= 10
-//     }
+//   if (threshold - scrollHeight > 0) body.style.top = `0px`
+//   if (
+//     scrollHeight > threshold &&
+//     threshold - scrollHeight > window.innerWidth - workScrollMax
+//   ) {
+//     myWorkContainer.style.left = `-${scrollHeight - threshold}px`
+//     body.style.top = `${scrollHeight - threshold}px`
 //   }
-
-//   workScrollDist < 0 ? (workScrollDist = 0) : null
-//   workScrollDist > workScrollMax ? (scrolling = false) : null
-//   myWorkContainer.style.left = `-${workScrollDist}px`
-//   lastKnownScrollPosition = window.scrollY
 // }

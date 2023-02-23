@@ -153,23 +153,33 @@ body {
 }
 
 .my-work-container {
-  position: absolute;
-  top: 946px;
-  left: 0;
   display: flex;
+  flex-direction: column;
   gap: 4rem;
 }
 
 .project {
-  text-align: center;
-  width: 800px;
-  height: 400px;
-  /* background-color: rgb(228, 163, 245); */
-  transition: transform 200ms ease;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: 1.5rem;
 }
 
-.project:hover {
-  transform: scale(1.1);
+.project-image-desktop {
+  position: relative;
+  width: 702px;
+  border-radius: 0.5rem;
+  z-index: 2;
+}
+
+.project-text {
+  position: absolute;
+  top: 0;
+  width: 702px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .project-title {
@@ -177,22 +187,63 @@ body {
   font-weight: 600;
 }
 
+.btn-container {
+  display: flex;
+  gap: 2rem;
+}
+
+/* About me - 3rd/third*/
+
+.about-me {
+  color: var(--clr-bg-2);
+  font-size: 1.5rem;
+  background-color: white;
+}
+
+.about-me-title {
+  text-align: center;
+  font-size: 8rem;
+}
+
+.about-me-intro {
+  /*  */
+  width: 700px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
 /* buttons/btns */
 
 .btn-primary {
-  /*  */
+  padding: 0.75rem 3rem;
+  background-color: #170e22;
+  font-size: 1.5rem;
+  border-radius: 2rem;
+  transition: 100ms all ease-in-out;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: scale(1.1);
+  border-radius: 0.75rem;
 }
 
 .btn-secondary {
-  /*  */
+  padding: 0.75rem 3rem;
+  border: 2px solid #170e22;
+  font-size: 1.5rem;
+  border-radius: 100px;
+  transition: 100ms all ease-in-out;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.1);
+  border-radius: 0.75rem;
 }
 
 .btn-tertiary {
   /*  */
-}
-
-.test {
-  height: 3000px;
 }
 
 @keyframes float {
