@@ -198,18 +198,61 @@ body {
   color: var(--clr-bg-2);
   font-size: 1.5rem;
   background-color: white;
+  padding-top: 4rem;
+  margin: 0 auto;
+  min-height: 300px;
+  max-height: 1000px;
+  transition: all 200ms ease-in-out;
 }
 
 .about-me-title {
-  text-align: center;
   font-size: 8rem;
+  text-align: center;
 }
 
 .about-me-intro {
-  /*  */
-  width: 700px;
-  margin: 0 auto;
+  width: 900px;
   padding: 2rem 0;
+}
+
+input[type='radio'] {
+  accent-color: var(--clr-bg-2);
+}
+.about-me > input[type='radio'],
+.about-me > label {
+  position: absolute;
+  right: 0;
+}
+
+/* radio button functionality */
+
+#about-me-tldr,
+#about-me-short,
+#about-me-medium,
+#about-me-long {
+  display: none;
+}
+
+#radio-tldr:checked ~ #about-me-tldr {
+  display: block;
+}
+
+#radio-short:checked ~ #about-me-short {
+  display: block;
+}
+
+#radio-medium:checked ~ #about-me-medium {
+  display: block;
+}
+
+#radio-long:checked ~ #about-me-long {
+  display: block;
+}
+
+/* Footer */
+
+footer {
+  height: 3000px;
 }
 
 /* buttons/btns */
