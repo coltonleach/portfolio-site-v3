@@ -7,8 +7,8 @@
   --scroll-height: 0px;
   --x: 0px;
   --y: 0px;
-  --clr-bg-1: hsl(291, 100%, 97%);
-  --clr-bg-2: hsl(259, 45%, 15%);
+  --clr-bg-1: #fdf0ff;
+  --clr-bg-2: #201537;
 }
 
 /* global/reset */
@@ -34,9 +34,9 @@ body {
   position: relative;
   font-family: var(--ff);
   overflow-x: hidden;
-  background-color: rgb(253, 242, 255);
+  background-color: var(--clr-bg-1);
   transition: background-color 500ms ease;
-  background-image: url('assets/noise.png');
+  background-image: url('./assets/noise.png');
 
   /* background-image: linear-gradient(0deg, #667eea 0%, #764ba2 100%); */
 }
@@ -105,7 +105,7 @@ input[type='radio'] {
   filter: blur(100px);
   pointer-events: none;
   mix-blend-mode: screen;
-  /* animation: lightMorph 10s infinite; */
+  animation: lightMorph 4s ease-in-out 0s infinite alternate;
 }
 
 .light1 {
@@ -140,6 +140,7 @@ input[type='radio'] {
 /* work section - 2nd/second */
 
 .my-work {
+  position: relative;
   color: var(--clr-bg-1);
   padding: 10rem 2rem;
   width: 100%;
@@ -169,6 +170,10 @@ input[type='radio'] {
   font-size: 1.5rem;
 }
 
+.images-container {
+  position: relative;
+}
+
 .project-image-desktop {
   position: relative;
   width: 702px;
@@ -176,13 +181,23 @@ input[type='radio'] {
   z-index: 2;
 }
 
+.project-image-mobile {
+  position: absolute;
+  bottom: -3rem;
+  right: -3rem;
+  width: 170px;
+  border-radius: 0.5rem;
+  z-index: 3;
+}
+
 .project-text {
   position: absolute;
-  top: 0;
-  width: 702px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 }
 
@@ -196,40 +211,66 @@ input[type='radio'] {
   gap: 2rem;
 }
 
-/* About me - 3rd/third*/
+/* About me - 3rd/third */
 
 .about-me {
+  position: relative;
   color: var(--clr-bg-2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   font-size: 1.5rem;
-  background-color: white;
-  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.about-me::after {
+  content: '';
+  background-color: var(--clr-bg-1);
+  transform: skewY(3deg);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
 
 .about-me-title {
   font-size: 8rem;
 }
 
-.about-me-intros {
-  width: 900px;
-  padding: 2rem 0;
+.about-me-intro {
+  width: 56ch;
+  padding: 1rem 0 2rem 0;
+  text-align: left;
+  margin: 0 auto;
 }
 
-.about-me-radio {
+.about-me > label {
+  font-size: 1rem;
+}
+
+.about-me > input {
+  margin-left: 1rem;
 }
 
 /* radio button functionality */
 
 #about-me-tldr,
+#about-me-short,
 #about-me-medium,
 #about-me-long {
   display: none;
 }
 
-.display {
+#radio-tldr:checked ~ #about-me-tldr {
+  display: block;
+}
+
+#radio-short:checked ~ #about-me-short {
+  display: block;
+}
+
+#radio-medium:checked ~ #about-me-medium {
+  display: block;
+}
+
+#radio-long:checked ~ #about-me-long {
   display: block;
 }
 
@@ -284,9 +325,9 @@ footer {
 
 @keyframes lightMorph {
   0% {
-    transform: skew(0deg) rotate(0deg);
+    transform: scale(1);
   }
   100% {
-    transform: skew(15deg) rotate(360deg);
+    transform: scale(1.2);
   }
 }

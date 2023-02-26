@@ -5,12 +5,6 @@ const myWork = document.querySelector('.my-work')
 const aboutMe = document.querySelector('.about-me')
 const projects = document.querySelectorAll('.project')
 const radioBtns = document.querySelectorAll('[type=radio]')
-const introContainer = document.querySelector('.about-me-intros')
-const aboutMeIntros = introContainer.querySelectorAll('p')
-const aboutMeHeight =
-  aboutMe.getBoundingClientRect().height -
-  introContainer.getBoundingClientRect().height
-
 let scrolling = false
 let lastKnownScrollPosition = 0
 let workScrollDist = 0
@@ -28,7 +22,7 @@ window.addEventListener('mousemove', (e) => {
 })
 
 const workTransition = (scrollHeight) => {
-  const threshold = 400
+  const threshold = 330
   if (scrollHeight > threshold) {
     body.style.setProperty('background-color', 'var(--clr-bg-2)')
     hero.style.setProperty(
@@ -90,14 +84,3 @@ projects.forEach((project) => observer.observe(project))
 //     body.style.top = `${scrollHeight - threshold}px`
 //   }
 // }
-
-/* Radio button check */
-
-radioBtns.forEach((btn, i) => {
-  btn.addEventListener('click', () => {
-    aboutMeIntros[i].style.display = 'block'
-    aboutMeIntros.forEach((intro, j) => {
-      if (i !== j) intro.style.display = 'none'
-    })
-  })
-})
