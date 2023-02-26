@@ -30,11 +30,6 @@ html {
   background: transparent;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 body {
   position: relative;
   font-family: var(--ff);
@@ -44,6 +39,15 @@ body {
   background-image: url('assets/noise.png');
 
   /* background-image: linear-gradient(0deg, #667eea 0%, #764ba2 100%); */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input[type='radio'] {
+  accent-color: var(--clr-bg-2);
 }
 
 /* hero section - 1st/first */
@@ -196,63 +200,43 @@ body {
 
 .about-me {
   color: var(--clr-bg-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-size: 1.5rem;
   background-color: white;
-  padding-top: 4rem;
   margin: 0 auto;
-  min-height: 300px;
-  max-height: 1000px;
-  transition: all 200ms ease-in-out;
 }
 
 .about-me-title {
   font-size: 8rem;
-  text-align: center;
 }
 
-.about-me-intro {
+.about-me-intros {
   width: 900px;
   padding: 2rem 0;
 }
 
-input[type='radio'] {
-  accent-color: var(--clr-bg-2);
-}
-.about-me > input[type='radio'],
-.about-me > label {
-  position: absolute;
-  right: 0;
+.about-me-radio {
 }
 
 /* radio button functionality */
 
 #about-me-tldr,
-#about-me-short,
 #about-me-medium,
 #about-me-long {
   display: none;
 }
 
-#radio-tldr:checked ~ #about-me-tldr {
-  display: block;
-}
-
-#radio-short:checked ~ #about-me-short {
-  display: block;
-}
-
-#radio-medium:checked ~ #about-me-medium {
-  display: block;
-}
-
-#radio-long:checked ~ #about-me-long {
+.display {
   display: block;
 }
 
 /* Footer */
 
 footer {
-  height: 3000px;
+  height: 1000px;
 }
 
 /* buttons/btns */

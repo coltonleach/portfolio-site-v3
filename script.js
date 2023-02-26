@@ -2,7 +2,14 @@ const root = document.querySelector(':root')
 const body = document.querySelector('body')
 const hero = document.querySelector('.hero')
 const myWork = document.querySelector('.my-work')
+const aboutMe = document.querySelector('.about-me')
 const projects = document.querySelectorAll('.project')
+const radioBtns = document.querySelectorAll('[type=radio]')
+const introContainer = document.querySelector('.about-me-intros')
+const aboutMeIntros = introContainer.querySelectorAll('p')
+const aboutMeHeight =
+  aboutMe.getBoundingClientRect().height -
+  introContainer.getBoundingClientRect().height
 
 let scrolling = false
 let lastKnownScrollPosition = 0
@@ -53,9 +60,6 @@ const callback = (projects, observer) => {
   }
   projects.forEach((project) => {
     if (project.isIntersecting) {
-      console.log(project)
-      // project.target.children[0].style.left = `-400px`
-      // project.target.children[1].style.left = `400px`
       project.target.children[0].animate(
         [{ left: `0px` }, { left: '-400px' }],
         animationOptions
@@ -86,3 +90,14 @@ projects.forEach((project) => observer.observe(project))
 //     body.style.top = `${scrollHeight - threshold}px`
 //   }
 // }
+
+/* Radio button check */
+
+radioBtns.forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    aboutMeIntros[i].style.display = 'block'
+    aboutMeIntros.forEach((intro, j) => {
+      if (i !== j) intro.style.display = 'none'
+    })
+  })
+})
