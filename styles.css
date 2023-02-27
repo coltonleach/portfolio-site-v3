@@ -37,7 +37,7 @@ body {
   background-color: var(--clr-bg-1);
   transition: background-color 500ms ease;
   background-image: url('./assets/noise.png');
-
+  cursor: none;
   /* background-image: linear-gradient(0deg, #667eea 0%, #764ba2 100%); */
 }
 
@@ -48,6 +48,22 @@ a {
 
 input[type='radio'] {
   accent-color: var(--clr-bg-2);
+}
+
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--clr-bg-1);
+  mix-blend-mode: exclusion;
+  pointer-events: none;
+  user-select: none;
+  z-index: 100;
+  transition: width 150ms ease-in-out;
 }
 
 /* hero section - 1st/first */
@@ -126,15 +142,21 @@ input[type='radio'] {
   /* background-image: linear-gradient(135deg, #ce9ffc 10%, #7367f0 100%); */
 }
 
-.hero > .wave {
+.wave {
   position: absolute;
   font-size: 8rem;
   top: calc(100px + (var(--scroll-height) * 0.4));
   left: 50%;
   text-shadow: 0 0 50px rgb(0, 0, 0);
-  transform: translate(calc(var(--x) * 0.03), calc(var(--y) * 0.05));
+  transform: translate(calc(var(--x) * 0.03), calc(var(--y) * 0.05)) rotate(0);
+  transform-origin: 90% 80%;
   transition: all 30ms ease;
+  filter: grayscale(20%);
   z-index: 2;
+}
+
+.wave:hover {
+  animation: wave 500ms infinite alternate ease-in-out;
 }
 
 /* work section - 2nd/second */
@@ -190,6 +212,18 @@ input[type='radio'] {
   z-index: 3;
 }
 
+#baytown-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#portfolio-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .project-text {
   position: absolute;
   width: 100%;
@@ -242,10 +276,12 @@ input[type='radio'] {
 }
 
 .about-me > label {
+  cursor: none;
   font-size: 1rem;
 }
 
 .about-me > input {
+  cursor: none;
   margin-left: 1rem;
 }
 
@@ -286,32 +322,41 @@ footer {
   padding: 0.75rem 3rem;
   background-color: #170e22;
   font-size: 1.5rem;
-  border-radius: 2rem;
+  border-radius: 0.75rem;
   transition: 100ms all ease-in-out;
-  cursor: pointer;
+  cursor: none;
 }
 
 .btn-primary:hover {
-  transform: scale(1.1);
-  border-radius: 0.75rem;
+  border-radius: 2rem;
+  transform: scale(1.13);
 }
 
 .btn-secondary {
   padding: 0.75rem 3rem;
   border: 2px solid #170e22;
   font-size: 1.5rem;
-  border-radius: 100px;
+  border-radius: 0.75rem;
   transition: 100ms all ease-in-out;
-  cursor: pointer;
+  cursor: none;
 }
 
 .btn-secondary:hover {
-  transform: scale(1.1);
-  border-radius: 0.75rem;
+  transform: scale(1.13);
+  border-radius: 2rem;
 }
 
 .btn-tertiary {
   /*  */
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
 }
 
 @keyframes float {

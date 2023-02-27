@@ -1,10 +1,15 @@
 const root = document.querySelector(':root')
 const body = document.querySelector('body')
+const cursorTrail = document.querySelector('.cursor-trail')
 const hero = document.querySelector('.hero')
 const myWork = document.querySelector('.my-work')
 const aboutMe = document.querySelector('.about-me')
 const projects = document.querySelectorAll('.project')
 const radioBtns = document.querySelectorAll('[type=radio]')
+const projectBtns = document.querySelectorAll(
+  '.btn-primary, .btn-secondary, [type=radio], label'
+)
+
 let scrolling = false
 let lastKnownScrollPosition = 0
 let workScrollDist = 0
@@ -17,8 +22,21 @@ window.addEventListener('scroll', (e) => {
 })
 
 window.addEventListener('mousemove', (e) => {
-  root.style.setProperty('--x', `${e.pageX}px`)
-  root.style.setProperty('--y', `${e.pageY}px`)
+  root.style.setProperty('--x', `${e.clientX}px`)
+  root.style.setProperty('--y', `${e.clientY}px`)
+  cursorTrail.animate([{ top: `${e.clientY}px`, left: `${e.clientX}px` }], {
+    duration: 100,
+    fill: 'forwards',
+  })
+})
+
+projectBtns.forEach((btn) => {
+  btn.addEventListener('mouseenter', () => {
+    cursorTrail.style.width = '30px'
+  })
+  btn.addEventListener('mouseleave', () => {
+    cursorTrail.style.width = '10px'
+  })
 })
 
 const workTransition = (scrollHeight) => {
@@ -62,6 +80,24 @@ const callback = (projects, observer) => {
         [{ left: `0px` }, { left: '400px' }],
         animationOptions
       )
+      if (project.target.querySelector('#baytown-image')) {
+        project.target.querySelector('#baytown-image').animate(
+          [
+            { transform: 'rotate(0deg)', left: '0rem', top: '0rem' },
+            { transform: 'rotate(-3deg)', left: '-4rem', top: '-2rem' },
+          ],
+          animationOptions
+        )
+      }
+      if (project.target.querySelector('#portfolio-image')) {
+        project.target.querySelector('#portfolio-image').animate(
+          [
+            { transform: 'rotate(0deg)', left: '0rem', top: '0rem' },
+            { transform: 'rotate(3deg)', left: '4rem', top: '2rem' },
+          ],
+          animationOptions
+        )
+      }
       observer.unobserve(project.target)
     }
   })
