@@ -64,39 +64,19 @@ const options = {
 }
 
 const callback = (projects, observer) => {
-  const animationOptions = {
-    duration: 1500,
-    fill: 'forwards',
-    easing: 'ease-in-out',
-    delay: 400,
-  }
   projects.forEach((project) => {
     if (project.isIntersecting) {
-      project.target.children[0].animate(
-        [{ left: `0px` }, { left: '-400px' }],
-        animationOptions
-      )
-      project.target.children[1].animate(
-        [{ left: `0px` }, { left: '400px' }],
-        animationOptions
-      )
-      if (project.target.querySelector('#baytown-image')) {
-        project.target.querySelector('#baytown-image').animate(
-          [
-            { transform: 'rotate(0deg)', left: '0rem', top: '0rem' },
-            { transform: 'rotate(-3deg)', left: '-4rem', top: '-2rem' },
-          ],
-          animationOptions
-        )
+      project.target.children[0].classList.add('project-image-push')
+      project.target.children[1].classList.add('project-text-push')
+      if (project.target.querySelector('.baytown-image')) {
+        project.target
+          .querySelector('.baytown-image')
+          .classList.add('baytown-tilt')
       }
-      if (project.target.querySelector('#portfolio-image')) {
-        project.target.querySelector('#portfolio-image').animate(
-          [
-            { transform: 'rotate(0deg)', left: '0rem', top: '0rem' },
-            { transform: 'rotate(3deg)', left: '4rem', top: '2rem' },
-          ],
-          animationOptions
-        )
+      if (project.target.querySelector('.portfolio-image')) {
+        project.target
+          .querySelector('.portfolio-image')
+          .classList.add('portfolio-tilt')
       }
       observer.unobserve(project.target)
     }

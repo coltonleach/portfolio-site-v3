@@ -3,12 +3,25 @@
 /* variables */
 
 :root {
-  --ff: 'Gantari', sans-serif;
+  /* Variables for Javascript */
   --scroll-height: 0px;
   --x: 0px;
   --y: 0px;
+
+  /* Colors */
   --clr-bg-1: #fdf0ff;
   --clr-bg-2: #201537;
+
+  /* Font */
+  --ff: 'Gantari', sans-serif;
+  --title-size: 8rem;
+
+  /* Animation settings */
+  --animation-delay: 400ms;
+  --animation-duration: 1500ms;
+  --animation-settings: var(--animation-duration) ease-in-out
+    var(--animation-delay);
+  --slide-animation: left var(--animation-settings);
 }
 
 /* global/reset */
@@ -23,6 +36,7 @@
 
 html {
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -176,7 +190,7 @@ input[type='radio'] {
 }
 
 .my-work-title {
-  font-size: 8rem;
+  font-size: var(--title-size);
 }
 
 .my-work-container {
@@ -194,6 +208,8 @@ input[type='radio'] {
 
 .images-container {
   position: relative;
+  transition: var(--slide-animation);
+  left: 0px;
 }
 
 .project-image-desktop {
@@ -201,6 +217,8 @@ input[type='radio'] {
   width: 702px;
   border-radius: 0.5rem;
   z-index: 2;
+  left: 0px;
+  transition: var(--slide-animation);
 }
 
 .project-image-mobile {
@@ -212,27 +230,47 @@ input[type='radio'] {
   z-index: 3;
 }
 
-#baytown-image {
+.baytown-image {
   position: absolute;
   top: 0;
   left: 0;
+  transition: all var(--animation-settings);
 }
 
-#portfolio-image {
+.baytown-tilt {
+  transform: rotate(-3deg);
+  left: -4rem;
+  top: -2rem;
+}
+
+.portfolio-image {
   position: absolute;
   top: 0;
   left: 0;
+  transition: all var(--animation-settings);
+}
+
+.portfolio-tilt {
+  transform: rotate(3deg);
+  left: 4rem;
+  top: 2rem;
+}
+
+.project-image-push {
+  left: -400px;
 }
 
 .project-text {
   position: absolute;
   width: 100%;
   height: 100%;
+  left: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  transition: var(--slide-animation);
 }
 
 .project-title {
@@ -240,11 +278,14 @@ input[type='radio'] {
   font-weight: 600;
 }
 
+.project-text-push {
+  left: 400px;
+}
+
 .btn-container {
   display: flex;
   gap: 2rem;
 }
-
 /* About me - 3rd/third */
 
 .about-me {
@@ -265,7 +306,7 @@ input[type='radio'] {
 }
 
 .about-me-title {
-  font-size: 8rem;
+  font-size: var(--title-size);
 }
 
 .about-me-intro {
@@ -386,5 +427,191 @@ footer > a:hover {
   }
   100% {
     transform: scale(1.2);
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  :root {
+    --title-size: 7rem;
+  }
+
+  .name-container {
+    left: 10%;
+  }
+  .title-container {
+    left: 30%;
+  }
+
+  .my-work-container {
+    gap: 3rem;
+  }
+
+  .project-title {
+    font-size: 3rem;
+  }
+
+  .project-image-desktop {
+    width: 600px;
+  }
+
+  .project-image-mobile {
+    bottom: -2rem;
+    right: -2rem;
+    width: 150px;
+  }
+
+  .project-image-push {
+    left: -350px;
+  }
+  .baytown-tilt {
+    left: -3rem;
+  }
+
+  .portfolio-tilt {
+    left: 3rem;
+  }
+
+  .project-text {
+    font-size: 1.2rem;
+  }
+
+  .project-text-push {
+    left: 350px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 1305px) {
+  :root {
+    --title-size: 6rem;
+  }
+  .hero {
+    border-radius: 0 0 50% 50%/0 0 35px 35px;
+  }
+
+  .name-container {
+    left: 5%;
+  }
+
+  .title-container {
+    left: 12%;
+  }
+
+  .project-image-desktop {
+    width: 500px;
+  }
+
+  .project-image-mobile {
+    width: 130px;
+    left: -2rem;
+  }
+
+  .project-image-push {
+    left: -260px;
+  }
+
+  .project-text-push {
+    left: 260px;
+  }
+
+  .baytown-tilt {
+    left: -1rem;
+  }
+
+  .portfolio-tilt {
+    left: 1rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 1rem;
+  }
+
+  .about-me-intro {
+    font-size: 1.2rem;
+  }
+
+  footer svg {
+    width: 40px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  :root {
+    --title-size: 4rem;
+  }
+
+  body {
+    cursor: inherit;
+  }
+
+  .cursor-trail {
+    display: none;
+  }
+
+  .hero > div {
+    font-size: 3rem;
+    -webkit-text-stroke: 1.2px white;
+  }
+
+  .name-container {
+    top: 250px;
+  }
+
+  .title-container {
+    left: 10%;
+  }
+
+  .wave {
+    display: none;
+    font-size: 4rem;
+  }
+
+  .project-image-push {
+    left: -500px;
+  }
+
+  .project-text {
+    text-align: center;
+    font-size: 1.1rem;
+    width: 32ch;
+  }
+
+  .project-text-push {
+    left: inherit;
+  }
+
+  .btn-container {
+    gap: 1rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+  }
+
+  .about-me-intro {
+    font-size: 1rem;
+    width: inherit;
+    margin: 0 1.5rem;
+  }
+
+  .about-me::after {
+    transform: skewY(4deg);
+  }
+
+  .about-me > label,
+  .about-me > input {
+    cursor: pointer;
+  }
+
+  footer {
+    gap: 1.5rem;
   }
 }
