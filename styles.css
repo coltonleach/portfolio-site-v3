@@ -206,10 +206,24 @@ input[type='radio'] {
   font-size: 1.5rem;
 }
 
-.images-container {
+.images-container,
+.images-container-mobile {
   position: relative;
   transition: var(--slide-animation);
   left: 0px;
+}
+
+.images-container-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 495px;
+  background-color: #170e22;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  width: 702px;
+  z-index: 3;
 }
 
 .project-image-desktop {
@@ -222,6 +236,13 @@ input[type='radio'] {
 }
 
 .project-image-mobile {
+  position: relative;
+  border-radius: 0.5rem;
+  z-index: 3;
+  width: 216px;
+}
+
+.project-image-mobile-secondary {
   position: absolute;
   bottom: -3rem;
   right: -3rem;
