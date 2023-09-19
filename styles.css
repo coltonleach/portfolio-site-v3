@@ -218,11 +218,11 @@ input[type='radio'] {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  width: 702px;
   height: 495px;
   background-color: #170e22;
   padding: 1rem;
   border-radius: 0.75rem;
-  width: 702px;
   z-index: 3;
 }
 
@@ -473,11 +473,20 @@ footer > a:hover {
     font-size: 3rem;
   }
 
+  .images-container-mobile {
+    height: 423px;
+    width: 600px;
+  }
+
   .project-image-desktop {
     width: 600px;
   }
 
   .project-image-mobile {
+    width: 185px;
+  }
+
+  .project-image-mobile-secondary {
     bottom: -2rem;
     right: -2rem;
     width: 150px;
@@ -525,21 +534,30 @@ footer > a:hover {
     left: 12%;
   }
 
+  .images-container-mobile {
+    height: 352px;
+    width: 500px;
+  }
+
   .project-image-desktop {
     width: 500px;
   }
 
   .project-image-mobile {
+    width: 150px;
+  }
+
+  .project-image-mobile-secondary {
     width: 130px;
     left: -2rem;
   }
 
   .project-image-push {
-    left: -260px;
+    left: -300px;
   }
 
   .project-text-push {
-    left: 260px;
+    left: 300px;
   }
 
   .baytown-tilt {
