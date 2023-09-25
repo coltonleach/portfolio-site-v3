@@ -73,10 +73,10 @@ const callback = (projects, observer) => {
           .querySelector('.baytown-image')
           .classList.add('baytown-tilt')
       }
-      if (project.target.querySelector('.portfolio-image')) {
+      if (project.target.querySelector('.discord-image')) {
         project.target
-          .querySelector('.portfolio-image')
-          .classList.add('portfolio-tilt')
+          .querySelector('.discord-image')
+          .classList.add('discord-tilt')
       }
       observer.unobserve(project.target)
     }

@@ -264,14 +264,14 @@ input[type='radio'] {
   top: -2rem;
 }
 
-.portfolio-image {
+.discord-image {
   position: absolute;
   top: 0;
   left: 0;
   transition: all var(--animation-settings);
 }
 
-.portfolio-tilt {
+.discord-tilt {
   transform: rotate(3deg);
   left: 4rem;
   top: 2rem;
@@ -499,7 +499,7 @@ footer > a:hover {
     left: -3rem;
   }
 
-  .portfolio-tilt {
+  .discord-tilt {
     left: 3rem;
   }
 
@@ -564,7 +564,7 @@ footer > a:hover {
     left: -1rem;
   }
 
-  .portfolio-tilt {
+  .discord-tilt {
     left: 1rem;
   }
 
