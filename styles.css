@@ -428,10 +428,12 @@ footer > a:hover {
 
 @keyframes wave {
   0% {
-    transform: rotate(0deg);
+    transform: translate(calc(var(--x) * 0.03), calc(var(--y) * 0.05))
+      rotate(0deg);
   }
   100% {
-    transform: rotate(10deg);
+    transform: translate(calc(var(--x) * 0.03), calc(var(--y) * 0.05))
+      rotate(10deg);
   }
 }
 
